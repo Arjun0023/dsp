@@ -1,0 +1,27 @@
+% Sample signal creation (replace this with your actual signal)
+fs = 1000; % Sampling rate (Hz)
+t = 0:1/fs:1; % Time vector from 0 to 1 second
+f1 = 10; % Frequency of the signal (Hz)
+signal = sin(2*pi*f1*t); % Replace this with your actual signal
+% Compute the power spectrum using FFT
+N = length(signal); % Number of points in the signal
+frequencies = (0:N-1)*(fs/N); % Frequency vector
+power_spectrum = abs(fft(signal)/N).^2; % Compute power spectrum
+% Plot the signal in the time domain
+figure;
+subplot(2,1,1);
+plot(t, signal);
+title('Time Domain Signal');
+xlabel('Time (s)');
+ylabel('Amplitude');
+% Plot the power spectrum in the frequency domain
+subplot(2,1,2);
+plot(frequencies, power_spectrum);
+title('Power Spectrum');
+xlabel('Frequency (Hz)');
+ylabel('Power');
+grid on;
+% Zoom in on the positive frequencies
+xlim([0 fs/2]);
+% Note: The power spectrum is symmetric, and for real-valued signals, you
+% typically only plot the positive frequencies (up to fs/2).

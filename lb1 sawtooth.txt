@@ -1,0 +1,16 @@
+% Parameters of the sawtooth wave
+amplitude = 1;      % Amplitude of the sawtooth wave
+frequency = 1;      % Frequency of the sawtooth wave (cycles per second)
+duration = 2;       % Duration of the signal in seconds
+sampling_rate = 1000; % Sampling rate (samples per second)
+% Create a time vector
+t = 0:1/sampling_rate:duration;
+% Generate the sawtooth wave manually
+angular_frequency = 2 * pi * frequency;
+sawtooth_wave = amplitude * (mod(angular_frequency * t, 2 * pi) - pi) / pi;
+% Plot the sawtooth wave
+plot(t, sawtooth_wave);
+title('Sawtooth Wave');
+xlabel('Time (s)');
+ylabel('Amplitude');
+grid on;

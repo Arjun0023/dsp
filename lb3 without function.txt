@@ -1,0 +1,18 @@
+x = [1, 2, 3, 4];
+%no of samples 
+N = length(x);
+%initialize
+X = zeros(1, N);
+%calculate DFT
+for k = 0:N-1
+    for n = 0:N-1
+        X(k+1)= X(k+1) + x(n+1) *exp(-1i*2*pi*k*n/N);
+    end
+end
+magX = abs(X);
+stem(0:N-1, magX);
+xlabel('frequency (k)');
+ylabel('Magnitude');
+title('Magnitude Specturm');
+%display dft coefficients
+disp(X);

@@ -1,0 +1,6 @@
+% Input sequence
+x = [1, 2, 1, 2];
+% Compute the 8-point DFT
+X = fft(x, 8); %
+Display the result
+disp(X);

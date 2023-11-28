@@ -1,0 +1,11 @@
+% Specify the file path
+file_path = '"C:\Users\DISHA\Downloads\rec_10.dat"';
+% Read the ECG signal from the file
+ecg_data = load(file_path);
+% Plot the ECG signal
+figure;
+plot(ecg_data);
+title('ECG Signal');
+xlabel('Sample Number');
+ylabel('Amplitude');
+grid on;

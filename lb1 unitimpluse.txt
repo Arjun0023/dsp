@@ -1,0 +1,12 @@
+% Create a time vector
+t = -10:0.1:10;
+% Initialize the unit impulse signal
+u = zeros(size(t));
+% Set the value of the impulse at t=0 to 1
+u(t == 0) = 1;
+% Plot the unit impulse signal
+stem(t, u);
+title('Unit Impulse Signal');
+xlabel('Time');
+ylabel('Amplitude');
+grid on;

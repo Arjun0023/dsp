@@ -1,0 +1,32 @@
+% Input signal
+x = [1, 2, 3, 4];
+% Number of samples in the signal
+N = length(x);
+% Compute the DFT
+X = fft(x);
+% Compute the magnitude spectrum
+magX = abs(X);
+% Plot the magnitude spectrum
+subplot(2, 2, 1);
+stem(0:N-1, magX);
+xlabel('Frequency (k)');
+ylabel('Magnitude');
+title('Magnitude Spectrum');
+% Compute the IDFT
+x_reconstructed = ifft(X);
+% Plot the original signal
+subplot(2, 2, 2);
+stem(0:N-1, x);
+xlabel('Time (n)');
+ylabel('Amplitude');
+title('Original Signal');
+% Plot the reconstructed signal
+subplot(2, 2, 3);
+stem(0:N-1, real(x_reconstructed));
+xlabel('Time (n)');
+ylabel('Amplitude');
+title('Reconstructed Signal');
+% Display the DFT coefficients
+disp(X);
+% Display the reconstructed signal
+disp(x_reconstructed);

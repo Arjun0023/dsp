@@ -1,0 +1,27 @@
+% Parameters
+fs = 1000; % Sampling frequency (Hz)
+fc_lp = 100; % Cutoff frequency for Low-Pass filter (Hz)
+fc_hp = 200; % Cutoff frequency for High-Pass filter (Hz)
+% Generate a sample sequence (replace this with your actual data)
+t = 0:1/fs:1;
+sequence = sin(2*pi*50*t) + 0.5*sin(2*pi*150*t) + randn(size(t))*0.5;
+% Design Low-Pass FIR filter
+order_lp = 50; % Filter order
+lp_filter = fir1(order_lp, fc_lp/(fs/2), 'low');
+% Design High-Pass FIR filter
+order_hp = 50; % Filter order
+hp_filter = fir1(order_hp, fc_hp/(fs/2), 'high');
+% Apply the filters to the sequence
+filtered_lp = filter(lp_filter, 1, sequence);
+filtered_hp = filter(hp_filter, 1, sequence);
+% Plot the original and filtered signals
+figure;
+subplot(3,1,1);
+plot(t, sequence);
+title('Original Sequence');
+subplot(3,1,2);
+plot(t, filtered_lp);
+title('Low-Pass Filtered Sequence');
+subplot(3,1,3);
+plot(t, filtered_hp);
+title('High-Pass Filtered Sequence');

@@ -1,0 +1,16 @@
+% Define the numerator and denominator coefficients of the transfer
+numerator = [1]; % You can replace this with your specific
+denominator = [1, -0.5, 0.25]; % You can replace this with your
+% Create a discrete-time transfer function object
+Ts = 0.1; % Sampling time (adjust as needed)
+sys = tf(numerator, denominator, Ts);
+% Compute the discrete-time impulse response
+n = 0:20; % Discrete time vector
+% Calculate the impulse response manually using convolution
+delta = [1 zeros(1, length(n) - 1)]; % Impulse signal
+impulse_response = filter(numerator, denominator, delta);
+% Plot the impulse response
+stem(n, impulse_response);
+title('Discrete Impulse Response');
+xlabel('Discrete Time (n)');
+ylabel('Amplitude');

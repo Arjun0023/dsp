@@ -1,0 +1,34 @@
+% Define a sample input signal (replace this with your signal) 
+fs = 1000; % Sampling frequency 
+t = 0:1/fs:1-1/fs; % Time vector for 1 second 
+x = sin(2*pi*50*t) + sin(2*pi*120*t); % Example signal (combination of two sine waves) 
+
+% Fixed window functions 
+window_functions = {@rectwin, @hann, @hamming, @blackman}; 
+window_names = {'Rectangular', 'Hann', 'Hamming', 'Blackman'}; 
+
+% Perform spectral analysis with fixed window functions 
+N = length(x); % Length of the signal 
+for i = 1:length(window_functions)
+    window = window_functions{i}(N); % Generate window of size N 
+    windowed_signal = x .* window; % Remove unnecessary transpose operator
+    windowed_spectrum = abs(fft(windowed_signal)) / N; % Compute spectrum
+
+    % Frequency axis for plotting 
+    f = (0:N-1) * fs / N; 
+
+    % Plotting the windowed signal and its spectrum 
+    figure;
+    
+    subplot(2, 1, 1);
+    plot(t, windowed_signal);
+    title(sprintf('%s Windowed Signal', window_names{i}));
+    xlabel('Time');
+    ylabel('Amplitude');
+    
+    subplot(2, 1, 2);
+    plot(f(1:N/2), 2*windowed_spectrum(1:N/2));
+    title(sprintf('%s Windowed Signal Spectrum', window_names{i}));
+    xlabel('Frequency (Hz)');
+    ylabel('Magnitude');
+end

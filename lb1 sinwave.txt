@@ -1,0 +1,16 @@
+% Parameters of the sine wave
+amplitude = 1;      % Amplitude of the sine wave
+frequency = 2*pi;   % Frequency in radians per second (2*pi is one full cycle per second)
+phase = 0;          % Phase shift (in radians)
+duration = 2;       % Duration of the signal in seconds
+sampling_rate = 1000; % Sampling rate (samples per second)
+% Create a time vector
+t = 0:1/sampling_rate:duration;
+% Generate the sine wave
+sinusoidal_wave = amplitude * sin(frequency * t + phase);
+% Plot the sinusoidal wave
+plot(t, sinusoidal_wave);
+title('Sinusoidal Wave');
+xlabel('Time (s)');
+ylabel('Amplitude');
+grid on;

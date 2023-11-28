@@ -1,0 +1,12 @@
+% Create a time vector
+t = -10:0.1:10;
+% Initialize the unit step signal
+u = zeros(size(t));
+% Set the value of the step to 1 for t >= 0
+u(t >= 0) = 1;
+% Plot the unit step signal
+plot(t, u);
+title('Unit Step Signal');
+xlabel('Time');
+ylabel('Amplitude');
+grid on;

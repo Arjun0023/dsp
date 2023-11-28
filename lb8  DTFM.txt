@@ -1,0 +1,24 @@
+% Define frequencies for DTMF tones 
+frequencies = [697, 770, 852, 941; 1209, 1336, 1477, 1633]; 
+
+% Choose key (for number "1")
+key_row = 1; 
+key_col = 1; 
+
+% Select frequencies for the chosen key 
+f1 = frequencies(1, key_col); 
+f2 = frequencies(2, key_row); 
+
+% Parameters for signal generation 
+duration = 1; % Duration of the signal (in seconds) 
+fs = 8000; % Sampling frequency 
+
+% Generate DTMF signal for the chosen key 
+t = 0:1/fs:duration; % Time vector 
+dtmf_signal = sin(2*pi*f1*t) + sin(2*pi*f2*t); 
+
+% Plot the generated DTMF signal 
+plot(t, dtmf_signal); 
+xlabel('Time (s)'); 
+ylabel('Amplitude'); 
+title('DTMF Signal for "1"');

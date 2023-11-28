@@ -1,0 +1,39 @@
+% Generate a sample input signal
+fs_original = 1000; % Original sampling frequency
+t_original = 0:1/fs_original:1-1/fs_original; % Time vector for 1 second
+input_signal = sin(2*pi*50*t_original) + sin(2*pi*120*t_original);
+
+% Decimation (downsampling)
+decimation_factor = 2;
+downsampled_signal = decimate(input_signal, decimation_factor);
+fs_decimated = fs_original / decimation_factor;
+
+% Interpolation (upsampling)
+interpolation_factor = 3;
+upsampled_signal = resample(input_signal, interpolation_factor, 1);
+fs_upsampled = fs_original * interpolation_factor;
+
+% Plotting
+figure;
+
+subplot(3, 1, 1);
+plot(t_original, input_signal);
+title('Original Signal');
+xlabel('Time (s)');
+ylabel('Amplitude');
+
+subplot(3, 1, 2);
+t_decimated = (0:length(downsampled_signal)-1) / fs_decimated;
+plot(t_decimated, downsampled_signal);
+title('Decimated Signal');
+xlabel('Time (s)');
+ylabel('Amplitude');
+
+subplot(3, 1, 3);
+t_upsampled = (0:length(upsampled_signal)-1) / fs_upsampled;
+plot(t_upsampled, upsampled_signal);
+title('Upsampled Signal');
+xlabel('Time (s)');
+ylabel('Amplitude');
+
+sgtitle('Sampling Rate Conversion: Decimation and Interpolation');
